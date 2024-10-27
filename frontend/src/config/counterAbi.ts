@@ -26,6 +26,25 @@ export const counterAbi = [
         type: 'uint256',
       },
     ],
+    name: 'Decrement',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'newCount',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'timestamp',
+        type: 'uint256',
+      },
+    ],
     name: 'Increment',
     type: 'event',
   },
@@ -40,6 +59,13 @@ export const counterAbi = [
       },
     ],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'decrement',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
