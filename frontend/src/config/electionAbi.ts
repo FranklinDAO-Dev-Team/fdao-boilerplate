@@ -99,6 +99,19 @@ export const electionAbi = [
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'numCandidates',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: '',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [
       {
         internalType: 'uint256',
@@ -117,4 +130,4 @@ export const electionAbi = [
     stateMutability: 'view',
     type: 'function',
   },
-];
+] as const;

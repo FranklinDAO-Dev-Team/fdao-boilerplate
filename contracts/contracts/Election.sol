@@ -1,6 +1,8 @@
 pragma solidity ^0.8.27;
 
 contract Election {
+    uint public numCandidates;
+
     // candidates
     string[] public candidateNames;
 
@@ -15,6 +17,7 @@ contract Election {
     event Vote(address user, uint timestamp);
 
     constructor (uint _endTimestamp, string[] memory _candidateNames) {
+        numCandidates = _candidateNames.length;
         endTimestamp = _endTimestamp;
         candidateNames = _candidateNames;
         numVotes = new uint[](_candidateNames.length);
