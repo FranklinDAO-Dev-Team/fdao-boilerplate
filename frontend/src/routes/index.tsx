@@ -1,38 +1,40 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useReadContract, useWriteContract } from 'wagmi';
 import { contractConfig } from '../config/config';
+import { useEffect } from 'react';
 
 function Index() {
-  const { data: count } = useReadContract({
+  const { data: candidateNames } = useReadContract({
     ...contractConfig,
-    functionName: 'count',
+    functionName: 'candidateNames',
+    args: [1],
   });
 
   const { writeContract } = useWriteContract();
 
-  const callIncrement = async () => {
+  const callCastVote = async (id: bigint) => {
     writeContract({
       ...contractConfig,
-      functionName: 'increment',
+      functionName: 'castVote',
+      args: [id],
     });
   };
 
-  const callDecrement = async () => {
-    writeContract({
-      ...contractConfig,
-      functionName: 'decrement',
-    });
-  };
+  useEffect(() => {
+    console.log(candidateNames);
+  }, [candidateNames]);
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-10">
-      <h2 className="text-8xl">Count: {count?.toString() || ''}</h2>
-      <button className="text-4xl p-2 outline rounded outline-8 outline-purple-500" onClick={callIncrement}>
-        Increment
-      </button>
-      <button className="text-4xl p-2 outline rounded outline-8 outline-purple-500" onClick={callDecrement}>
-        Decrement
-      </button>
+      {candidateNames?.map((name, index) => (
+        <button
+          key={index}
+          className="text-4xl p-2 outline rounded outline-8 outline-purple-500"
+          onClick={() => callCastVote(index)}
+        >
+          {name}
+        </button>
+      ))}
     </div>
   );
 }
