@@ -2,6 +2,11 @@ export const electionAbi = [
   {
     inputs: [
       {
+        internalType: 'contract VoteToken',
+        name: '_voteToken',
+        type: 'address',
+      },
+      {
         internalType: 'string[]',
         name: '_candidateNames',
         type: 'string[]',
@@ -74,25 +79,6 @@ export const electionAbi = [
     type: 'function',
   },
   {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address',
-      },
-    ],
-    name: 'hasVoted',
-    outputs: [
-      {
-        internalType: 'bool',
-        name: '',
-        type: 'bool',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [],
     name: 'numCandidates',
     outputs: [
@@ -119,6 +105,19 @@ export const electionAbi = [
         internalType: 'uint256',
         name: '',
         type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'voteToken',
+    outputs: [
+      {
+        internalType: 'contract VoteToken',
+        name: '',
+        type: 'address',
       },
     ],
     stateMutability: 'view',
